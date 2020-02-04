@@ -16,4 +16,3 @@ Lotterstraat 5
 ## belangrijke nummers
 kvk `77102673`
 btw `NL003148326B03`
-IBAN `NL59BUNQ2041707674`
