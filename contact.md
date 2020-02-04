@@ -16,4 +16,3 @@ Adres afgeschermd
 ## belangrijke nummers
 kvk `77102673`
 btw `NL003148326B03`
-IBAN `BANKREKENING_VERWIJDERD`
