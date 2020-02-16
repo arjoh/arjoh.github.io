@@ -14,7 +14,7 @@ description: Deze website is in aanbouw
 url: "https://www.ajh-consultancy.nl"
 
 # baseurl should be an empty string
-#baseurl: ""
+baseurl: ""
 
 # --- Navigation bar options --- #
 
