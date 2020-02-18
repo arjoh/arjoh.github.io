@@ -193,6 +193,8 @@ exclude:
   - LICENSE
   - README.md
   - Vagrantfile
+  - docker-compose.yml
+  - _site
 
 # prose.io config
 prose:
