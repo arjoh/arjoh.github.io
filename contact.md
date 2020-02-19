@@ -11,7 +11,7 @@ Adres afgeschermd
 
 ## telefoon/e-mail
 [06-00000000](tel:06-00000000 "Bel me")
-[contact@example.invalid](contact@example.invalid "E-mail me")
+[contact@example.invalid](mailto:contact@example.invalid "E-mail me")
 
 ## belangrijke nummers
 kvk `77102673`
