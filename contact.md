@@ -11,7 +11,7 @@ Lotterstraat 5
 
 ## telefoon/e-mail
 [06-12969352](tel:06-12969352 "Bel me")
-[arjo@ajh-consultancy.nl](arjo@ajh-consultancy.nl "E-mail me")
+[arjo@ajh-consultancy.nl](mailto:arjo@ajh-consultancy.nl "E-mail me")
 
 ## belangrijke nummers
 kvk `77102673`
