@@ -3,7 +3,7 @@ services:
   ajh-consultancy.nl:
     container_name: ajh-consultancy.nl
     build:
-      context: /srv/ajh-consultancy.nl
+      context: .
     image: beautiful-jekyll:latest
     volumes:
       - .:/srv/jekyll
