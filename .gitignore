@@ -7,3 +7,10 @@ _site
 .DS_Store
 Thumbs.db
 ehthumbs.db
+
+
+beautiful-jekyll-theme-*.gem
+
+# Local Bundler configuration and installed dependencies
+.bundle/
+vendor/
