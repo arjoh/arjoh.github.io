@@ -14,12 +14,26 @@ customization commit and rebased locally onto the upstream commit above. Conflic
 were resolved by keeping the new theme and migrating AJH settings to its current
 configuration format. Obsolete dependency-update commits were not replayed.
 
-The review PR imports that tested result onto the existing AJH history. It does
-not rewrite `main` or copy the entire upstream commit graph: the GitHub connection
-can create review commits, but authenticated native Git push was unavailable.
-The local rebased branch is `rebase/ajh-customizations`. This distinction matters
-when planning future Git merges: do not assume the PR makes the new upstream
-commit a shared ancestor.
+The complete upstream Git history and the exact rebased customization commit
+were published to `rebase/beautiful-jekyll-6`. Its first customization commit is
+`16ff57de5f3d21e3a925e664e4b10d87120c7040`, whose parent is the upstream commit
+above. A one-time GitHub Actions job published the history after native Git push
+from the preparation environment was unavailable. No history on `main` was
+rewritten.
+
+PR #45 was a snapshot-only upgrade and has been closed in favour of this real
+rebased branch. Future upstream updates can now use the correct common ancestor:
+
+```sh
+git fetch origin
+git switch --track origin/rebase/beautiful-jekyll-6
+git remote add upstream https://github.com/daattali/beautiful-jekyll.git # once
+git fetch upstream
+git rebase upstream/master
+```
+
+The old individual AJH/dependency-update commits remain on the original `main`;
+their net effect is consolidated in the rebased customization commit.
 
 ## What was retained
 
