@@ -75,3 +75,15 @@ The build check runs on pull requests and pushes, without deploying a preview or
 changing the existing GitHub Pages deployment settings. It checks the original
 routes, pagination, contact/social links, RSS, sitemap, palette, avatar and every
 local HTML link/asset. It does not replace visual review on desktop and mobile.
+
+## Contact privacy customization
+
+The contact page stores an XOR/base64-obfuscated payload and decodes it only on
+an explicit button click through `assets/js/contact-details.js`. The footer uses
+the theme's `footer-extra` hook to link to that page; direct email/phone and social
+icons have been removed. This is a hurdle for simple scrapers, not encryption.
+Existing public Git history is not rewritten.
+
+The site checks scan built text files for decoded contact values, and the Node
+interaction tests verify that decoding waits for a click and yields usable links
+with focus moved to the revealed region.
