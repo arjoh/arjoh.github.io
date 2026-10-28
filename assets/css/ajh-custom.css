@@ -6,3 +6,20 @@ h1, h2, h3, h4, h5, h6 {
 footer {
   border-top-color: #eee8d5;
 }
+
+.contact-reveal {
+  margin: 1.875rem 0;
+}
+
+.contact-details {
+  margin-top: 1.5rem;
+}
+
+.contact-details address {
+  font-style: normal;
+  line-height: 1.6;
+}
+
+.contact-footer-link {
+  margin: 0 0 1rem;
+}

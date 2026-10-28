@@ -1,4 +1,7 @@
 """Regression checks for AJH content, routes, branding and local theme assets."""
+import base64
+import json
+import re
 from hashlib import sha256
 from html.parser import HTMLParser
 from pathlib import Path
@@ -19,10 +22,12 @@ class Page(HTMLParser):
         super().__init__()
         self.links = []
         self.preview_count = 0
+        self.elements = []
         self.feed(text)
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
+        self.elements.append((tag, attrs))
         self.links.extend(attrs[k] for k in ('href', 'src') if k in attrs)
         self.preview_count += 'post-preview' in attrs.get('class', '').split()
 
@@ -43,13 +48,36 @@ home = read('index.html')
 contact = read('contact/index.html')
 assert '<title>AJH Consultancy - Deze website is in aanbouw</title>' in home
 assert 'Welkom op de website van AJH Consultancy.' in home
-assert 'Adres afgeschermd' in contact and '0000 AA' in contact
+contact_page = Page(contact)
+contact_elements = {attrs.get('id'): attrs for _, attrs in contact_page.elements if attrs.get('id')}
+encoded = contact_elements['contactgegevens']['data-contact']
+details = json.loads(bytes(b ^ 93 for b in base64.b64decode(encoded)))
+assert contact_elements['show-contact-details']['aria-expanded'] == 'false'
+assert contact_elements['show-contact-details']['type'] == 'button'
+assert 'hidden' in contact_elements['contact-details']
+assert 'Contactgegevens tonen' in contact
+assert '/assets/js/contact-details.js' in contact_page.links
+
+# None of the built text files may expose the protected values before a click.
+protected = [details['email'], details['phone'], *details['address'][1:]]
+for file in ROOT.rglob('*'):
+    if not file.is_file():
+        continue
+    try:
+        text = file.read_text()
+    except UnicodeDecodeError:
+        continue
+    for value in protected:
+        assert value.casefold() not in text.casefold(), f'Contact detail leaked in {file}'
+    phone_digits = re.sub(r'\D', '', details['phone'])
+    assert phone_digits not in re.sub(r'\D', '', text), f'Phone digits leaked in {file}'
 assert '77102673' in contact and 'NL003148326B03' in contact
 for html in (home, contact, read('blog/index.html')):
     assert 'Beautiful Jekyll 6.0.1' in html
-    for href in ('mailto:contact@example.invalid', 'tel:06-00000000',
-                 'https://github.com/arjoh', 'https://linkedin.com/in/arjohooimeijer'):
-        assert href in Page(html).links, f'Missing social link: {href}'
+    assert '/contact/#contactgegevens' in Page(html).links
+    assert not any(link.startswith(('mailto:', 'tel:')) for link in Page(html).links)
+    for removed in ('https://github.com/arjoh', 'https://linkedin.com/in/arjohooimeijer'):
+        assert removed not in Page(html).links
     assert '/assets/css/ajh-custom.css' in Page(html).links
     assert '/assets/img/avatar-icon.png' in html
 
@@ -79,5 +107,5 @@ for file in ROOT.rglob('*.html'):
         assert target.is_file() or (target / 'index.html').is_file(), (
             f'Broken local link in {file}: {link}'
         )
-print('Passed: original pages, 7 posts, pagination, contact/social links, RSS, '
+print('Passed: original pages, 7 posts, pagination, contact privacy, RSS, '
       'sitemap, Solarized colours, avatar, and all local HTML links/assets.')
