@@ -45,11 +45,7 @@ round-avatar: true
 # Select the social network links that you want to show in the footer.
 # You can change the order that they show up on the page by changing the order here.
 # Uncomment the links you want to show and add your information to each one.
-social-network-links:
-  email: arjo@ajh-consultancy.nl
-  github: arjoh
-  linkedin: arjohooimeijer
-  telephone: 06-12969352
+social-network-links: {}
 #  medium: yourname
 #  reddit: yourname or r/yoursubreddit
 #  linkedin: daattali
@@ -272,6 +268,8 @@ defaults:
       path: "" # any file that's not a post will be a "page" layout by default
     values:
       layout: "page"
+      footer-extra:
+        - contact-link.html
 
 # Exclude these files from production site
 exclude:
