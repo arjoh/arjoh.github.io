@@ -19,3 +19,5 @@ jobs:
         run: bundle exec jekyll build --trace
       - name: Check existing pages and customizations
         run: python3 tests/check_site.py _site
+      - name: Check contact reveal interaction
+        run: node --test tests/contact-details.test.cjs
