@@ -2,7 +2,7 @@
 layout: page
 title: Contact
 subtitle: Contact- en bedrijfsgegevens
-use-site-title: true
+share-title: AJH Consultancy - Deze website is in aanbouw
 ---
 ## adres
 AJH Consultancy
