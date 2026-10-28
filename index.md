@@ -2,7 +2,7 @@
 layout: page
 title: AJH Consultancy
 subtitle: Deze website is in aanbouw
-use-site-title: true
+share-title: AJH Consultancy - Deze website is in aanbouw
 published: true
 ---
 ## welkom
