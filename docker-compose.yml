@@ -1,0 +1,15 @@
+version: '3'
+services:
+  ajh-consultancy.nl:
+    container_name: ajh-consultancy.nl
+    build:
+      context: .
+    image: beautiful-jekyll:latest
+    volumes:
+      - .:/srv/jekyll
+      - ./_site:/srv/jekyll/_site
+    environment:
+      - TZ=Europe/Amsterdam
+    restart: unless-stopped
+    ports: 
+      - 127.0.0.1:4000:4000
