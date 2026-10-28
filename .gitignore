@@ -8,6 +8,9 @@ _site
 Thumbs.db
 ehthumbs.db
 
-Gemfile.lock
 
 beautiful-jekyll-theme-*.gem
+
+# Local Bundler configuration and installed dependencies
+.bundle/
+vendor/
