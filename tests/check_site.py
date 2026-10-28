@@ -38,6 +38,7 @@ for route in ('index.html', 'contact/index.html', 'aboutme/index.html',
               '404.html', *(f'{post}/index.html' for post in POSTS)):
     read(route)
 
+assert not (ROOT / 'vendor').exists(), 'Bundled gems must not enter the website'
 home = read('index.html')
 contact = read('contact/index.html')
 assert '<title>AJH Consultancy - Deze website is in aanbouw</title>' in home

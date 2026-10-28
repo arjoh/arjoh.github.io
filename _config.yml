@@ -291,6 +291,7 @@ exclude:
 - Appraisals
 - beautiful-jekyll-theme.gemspec
 - gemfiles/
+- vendor/
 - tests/
 - UPSTREAM.md
 
