@@ -23,3 +23,36 @@ footer {
 .contact-footer-link {
   margin: 0 0 1rem;
 }
+
+.contact-reveal-button {
+  max-width: 100%;
+  min-height: 44px;
+  padding: 0.7rem 1.15rem;
+  border: 1px solid currentColor;
+  border-radius: 0.35rem;
+  background: transparent;
+  color: #176d65;
+  font-family: var(--header-font);
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.contact-reveal-button:hover {
+  background: rgba(42, 161, 152, 0.08);
+  color: #115a53;
+}
+
+.contact-reveal-button:focus-visible {
+  outline: 2px solid var(--hover-col);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-reveal-button {
+    transition: none;
+  }
+}
