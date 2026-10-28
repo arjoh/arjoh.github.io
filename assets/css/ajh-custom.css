@@ -28,10 +28,10 @@ footer {
   max-width: 100%;
   min-height: 44px;
   padding: 0.7rem 1.15rem;
-  border: 1px solid currentColor;
+  border: 1px solid var(--link-col);
   border-radius: 0.35rem;
   background: transparent;
-  color: #176d65;
+  color: var(--text-col);
   font-family: var(--header-font);
   font-size: 0.9rem;
   font-weight: 600;
@@ -42,8 +42,8 @@ footer {
 }
 
 .contact-reveal-button:hover {
-  background: rgba(42, 161, 152, 0.08);
-  color: #115a53;
+  background: #eee8d5;
+  color: #586e75;
 }
 
 .contact-reveal-button:focus-visible {
